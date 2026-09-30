@@ -266,8 +266,19 @@ que pueden interpretarse de más de una manera. Cada entrada indicará su fuente
 para conservar la procedencia de la definición. El catálogo de requisitos podrá
 enlazar a los términos de esta sección, pero no los definirá de nuevo.
 
-| Término | Definición en Proyecto Simbiosis | Fuente |
-| --- | --- | --- |
+| Término | Definición de Proyecto Simbiosis | Fuente |
+|---|---|---|
+| **Usuarios concurrentes y escalabilidad** | Capacidad de Simbiosis para admitir al menos **100 usuarios conectados simultáneamente** y aumentar automáticamente los recursos de infraestructura cuando crezca la carga, sin intervención del personal. | § 2.1.1 |
+| **Rendimiento y tiempos de respuesta** | Capacidad de la plataforma para mantener unos tiempos de respuesta máximos bajo una carga de **100 usuarios concurrentes y 10 operaciones por segundo durante 30 minutos**: 2 segundos para consultas y 3 segundos para publicaciones en el 95 % de los casos. | §§ 2.1.2–2.1.3 |
+| **Disponibilidad del servicio** | Prestación del servicio de Simbiosis durante las 24 horas del día con una disponibilidad mínima del **99,5 % mensual**, aplicando las condiciones establecidas para los mantenimientos planificados. | §§ 2.1.4–2.1.5 |
+| **Recuperación ante desastres y copias de seguridad** | Mecanismo para proteger y recuperar la información mediante **copias de seguridad diarias**, recuperación de las funciones principales en un máximo de 4 horas y una pérdida máxima de datos equivalente a las 24 horas anteriores al incidente. | §§ 2.2.1–2.2.2 |
+| **Control de acceso a los datos de salud** | Gestión del acceso a la información sanitaria en función de las relaciones existentes entre usuarios: el cuidador accede mientras exista asociación con el paciente y este puede revocar el acceso de los nutricionistas. | § 2.2.3 |
+| **Gobernanza y aprobación de cuentas y contenidos** | Conjunto de responsabilidades mediante las que el **coordinador** aprueba las cuentas de cuidadores y nutricionistas, gestiona los reportes de contenido inapropiado y los nutricionistas aprueban las recetas antes de su publicación. | §§ 2.3.2 y 2.4.1 |
+| **Accesibilidad WCAG 2.2 AA** | Requisito por el que todas las pantallas y funciones de la primera versión deben cumplir las **Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2, nivel AA**, mediante evaluación automática y manual. | §§ 2.4.2–2.4.3 |
+| **Autenticación e integración con Google** | Sistema de autenticación mediante **OAuth 2.0 u OpenID Connect sobre HTTPS**, sin que Simbiosis almacene la contraseña de la cuenta de Google. | § 2.3.1 |
+| **Ciclo de vida de las cuentas** | Reglas para gestionar las cuentas de cuidadores sin asociaciones: después de **3 meses** sin asociación se consideran inactivas y después de **1 año** se eliminan, conservándose el contenido que hubieran publicado. | § 2.2.4 |
+| **Arquitectura web y despliegue en la nube** | Simbiosis se ofrecerá como una **interfaz web responsiva**, basada en estándares web abiertos y sin necesidad de instalar aplicaciones o software adicional, desplegada en una infraestructura cloud gestionada por un proveedor externo. | §§ 2.5.1–2.5.3 |
+
 
 ## 10. Modelos de análisis
 
