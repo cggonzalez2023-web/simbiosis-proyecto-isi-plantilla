@@ -1,10 +1,11 @@
+
 # Proyecto Simbiosis
 
 ## Especificación de requisitos de software
 
-**Versión:** 0.10  
-**Fecha:** 23/09/2026  
-**Estado:** Base documental con UR y FR consolidados; NFR y glosario pendientes  
+**Versión:** 0.14
+**Fecha:** 02/10/2026
+**Estado:** UR, FR y NFR consolidados; glosario del dominio incorporado
 **Destinatarios:** partes interesadas del proyecto
 
 Este documento reúne la especificación de requisitos de software (SRS) de
@@ -13,16 +14,16 @@ catálogo de requisitos, al que esta SRS enlaza sin duplicarlo. El glosario form
 parte de esta SRS, en la sección 9.
 
 En esta versión se fija la estructura y se incorpora el contexto confirmado en
-el Documento de Visión y Alcance y en el acta de captura de A03. Los requisitos
-de usuario y funcionales ya están consolidados en el catálogo. Los requisitos
-no funcionales y el glosario permanecen pendientes. Ningún apartado pendiente
-autoriza a completar información por suposición.
+el Documento de Visión y Alcance y en el acta de captura de requisitos generales.
+Los requisitos de usuario, funcionales y no funcionales ya están consolidados
+en el catálogo. Esta SRS incorpora el glosario del dominio. Ningún apartado
+pendiente autoriza a completar información por suposición.
 
 ## Índice
 
 1. [Introducción](#1-introducción)
 2. [Descripción general](#2-descripción-general)
-3. [Requisitos funcionales](#3-requisitos-funcionales)
+3. [Requisitos de usuario y funcionales](#3-requisitos-de-usuario-y-funcionales)
 4. [Requisitos de datos](#4-requisitos-de-datos)
 5. [Requisitos de interfaz externa](#5-requisitos-de-interfaz-externa)
 6. [Atributos de calidad](#6-atributos-de-calidad)
@@ -49,7 +50,7 @@ los sustituyen.
 - `BO-0X` identifica un objetivo de negocio.
 - `UR-0X` identifica un requisito de usuario.
 - `FR-0XX` identifica un requisito funcional.
-- `NFR-0X` identifica un requisito no funcional.
+- `NFR-0XX` identifica un requisito no funcional.
 - `UC-0X` identifica un caso de uso cuando sea necesario enlazarlo desde otro
   artefacto.
 
@@ -153,11 +154,14 @@ confirmadas.
 Estas condiciones deberán revisarse si un cambio de alcance o una fuente nueva
 las contradice.
 
-## 3. Requisitos funcionales
+## 3. Requisitos de usuario y funcionales
 
 El [catálogo de requisitos](./catalogo-requisitos.md) contiene el texto
-canónico de los requisitos de usuario y funcionales. Es la única fuente de
-verdad para sus identificadores, redacción, asociaciones, fuentes y estado.
+canónico de los requisitos de usuario y funcionales. También recoge los
+objetivos de negocio relacionados, los requisitos no funcionales y un apartado
+para la trazabilidad con los casos de uso, aún pendiente de consolidación. Es
+la única fuente de verdad para los identificadores, la redacción y las
+asociaciones de los requisitos.
 
 Esta sección explica cómo se organizan esos requisitos dentro de la SRS y cómo
 se relacionan con los modelos de análisis. No reproduce el texto de los UR ni
@@ -222,18 +226,17 @@ Los requisitos no funcionales canónicos se mantienen en el
 [catálogo de requisitos](./catalogo-requisitos.md). Cada uno incluye
 identificador, condición comprobable, fuente y ámbito global o local.
 
-Los atributos que se revisarán incluyen rendimiento, seguridad, disponibilidad
-y fiabilidad, usabilidad y accesibilidad, compatibilidad y portabilidad, y
-obligaciones legales y normativas.
+Los NFR consolidados abarcan atributos de calidad, restricciones de diseño e
+implementación y requisitos de interfaz externa. La relación de los NFR
+locales con identificadores UR o FR concretos sigue pendiente de completar.
 
 Los requisitos legales y normativos se registrarán como NFR y no se duplicarán
 en la sección 8.
 
 ### 6.1 Organización por atributo
 
-El catálogo clasifica los NFR por rendimiento; seguridad y privacidad;
-disponibilidad y fiabilidad; usabilidad y accesibilidad; compatibilidad y
-portabilidad; y obligaciones legales y normativas.
+El catálogo distingue requisitos de calidad (`NFR-Q`), restricciones de diseño
+e implementación (`NFR-R`) y requisitos de interfaz externa (`NFR-I`).
 
 ### 6.2 Obligaciones legales y normativas
 
@@ -255,9 +258,9 @@ sin una fuente confirmada.
 
 | Identificador | Decisión o pregunta | Fuente | Estado |
 | --- | --- | --- | --- |
-| DP-01 | Precisar versiones compatibles de los navegadores de uso habitual. | Acta de A03, §7.4 | Pendiente |
+| DP-01 | Precisar versiones compatibles de los navegadores de uso habitual. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.4 | Pendiente |
 | DP-02 | Precisar protocolos y formatos de las integraciones externas. | Sección 5.2 de esta SRS | Pendiente |
-| DP-03 | Precisar formatos regionales y condiciones verificables de localización. | Acta de A03, §7.2 | Pendiente |
+| DP-03 | Precisar formatos regionales y condiciones verificables de localización. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §7.2 | Pendiente |
 
 ## 9. Glosario
 
@@ -266,19 +269,25 @@ que pueden interpretarse de más de una manera. Cada entrada indicará su fuente
 para conservar la procedencia de la definición. El catálogo de requisitos podrá
 enlazar a los términos de esta sección, pero no los definirá de nuevo.
 
-| Término | Definición de Proyecto Simbiosis | Fuente |
-|---|---|---|
-| **Usuarios concurrentes y escalabilidad** | Capacidad de Simbiosis para admitir al menos **100 usuarios conectados simultáneamente** y aumentar automáticamente los recursos de infraestructura cuando crezca la carga, sin intervención del personal. | § 2.1.1 |
-| **Rendimiento y tiempos de respuesta** | Capacidad de la plataforma para mantener unos tiempos de respuesta máximos bajo una carga de **100 usuarios concurrentes y 10 operaciones por segundo durante 30 minutos**: 2 segundos para consultas y 3 segundos para publicaciones en el 95 % de los casos. | §§ 2.1.2–2.1.3 |
-| **Disponibilidad del servicio** | Prestación del servicio de Simbiosis durante las 24 horas del día con una disponibilidad mínima del **99,5 % mensual**, aplicando las condiciones establecidas para los mantenimientos planificados. | §§ 2.1.4–2.1.5 |
-| **Recuperación ante desastres y copias de seguridad** | Mecanismo para proteger y recuperar la información mediante **copias de seguridad diarias**, recuperación de las funciones principales en un máximo de 4 horas y una pérdida máxima de datos equivalente a las 24 horas anteriores al incidente. | §§ 2.2.1–2.2.2 |
-| **Control de acceso a los datos de salud** | Gestión del acceso a la información sanitaria en función de las relaciones existentes entre usuarios: el cuidador accede mientras exista asociación con el paciente y este puede revocar el acceso de los nutricionistas. | § 2.2.3 |
-| **Gobernanza y aprobación de cuentas y contenidos** | Conjunto de responsabilidades mediante las que el **coordinador** aprueba las cuentas de cuidadores y nutricionistas, gestiona los reportes de contenido inapropiado y los nutricionistas aprueban las recetas antes de su publicación. | §§ 2.3.2 y 2.4.1 |
-| **Accesibilidad WCAG 2.2 AA** | Requisito por el que todas las pantallas y funciones de la primera versión deben cumplir las **Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2, nivel AA**, mediante evaluación automática y manual. | §§ 2.4.2–2.4.3 |
-| **Autenticación e integración con Google** | Sistema de autenticación mediante **OAuth 2.0 u OpenID Connect sobre HTTPS**, sin que Simbiosis almacene la contraseña de la cuenta de Google. | § 2.3.1 |
-| **Ciclo de vida de las cuentas** | Reglas para gestionar las cuentas de cuidadores sin asociaciones: después de **3 meses** sin asociación se consideran inactivas y después de **1 año** se eliminan, conservándose el contenido que hubieran publicado. | § 2.2.4 |
-| **Arquitectura web y despliegue en la nube** | Simbiosis se ofrecerá como una **interfaz web responsiva**, basada en estándares web abiertos y sin necesidad de instalar aplicaciones o software adicional, desplegada en una infraestructura cloud gestionada por un proveedor externo. | §§ 2.5.1–2.5.3 |
-
+| Término | Definición en Proyecto Simbiosis | Fuente |
+| --- | --- | --- |
+| Paciente | Persona con EII que utiliza la plataforma para gestionar sus datos de salud y encontrar recetas adecuadas a su perfil. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §3 |
+| Cuidador | Persona que cuida a uno o varios pacientes y cuyo acceso a los datos de salud de cada uno requiere su autorización expresa. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 |
+| Relación de cuidado | Asociación entre un paciente y un cuidador aceptada por el paciente. Mientras esté vigente, permite al cuidador acceder únicamente a los datos de salud autorizados. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.2.3 |
+| Nutricionista | Rol profesional común a médicos y nutricionistas acreditados. Una vez aprobado, puede publicar y validar recetas en la plataforma. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.2, §1.3 y §3 |
+| Acreditación profesional | Presentación y revisión de documentación oficial para habilitar las funciones reservadas al rol de nutricionista. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.6; [acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §1.3 |
+| Coordinador | Rol responsable de administrar y moderar el foro y de aprobar las cuentas de cuidadores y nutricionistas. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.3.2 |
+| Alias | Identificador único elegido durante el registro que se muestra en el foro y otros espacios públicos como identidad visible de la persona usuaria. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.1 y §2.2 |
+| Cuenta activa | Cuenta cuyo correo electrónico ya se ha verificado mediante el enlace de activación. La activación no habilita por sí sola las funciones profesionales, que requieren aprobación. | [Acta de captura de requisitos de UR-01](../captura/acta-captura-requisitos-ur-01.md), §2.4 y §2.6 |
+| Datos de salud | Información relativa a la salud de un paciente, de carácter privado, cuyo acceso por cuidadores o nutricionistas depende de la autorización correspondiente. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2 y §7.1; [acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.6 |
+| Perfil de salud | Conjunto de datos de salud asociados a un paciente que la plataforma puede utilizar para mostrarle recetas adecuadas. Su representación concreta sigue pendiente de decidir. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §2; [acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §4 |
+| Dato fisiológico | Medición del estado físico o de salud introducida por el paciente, como peso, altura, presión arterial, frecuencia cardíaca o temperatura corporal. | [Acta de captura de requisitos de UR-05](../captura/acta-captura-requisitos-ur-05.md), §2.1 |
+| Restricción alimentaria | Condición declarada por un paciente que debe tenerse en cuenta al buscar recetas adecuadas para él. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta adaptada | Receta adecuada al perfil, las alergias y las restricciones alimentarias declaradas por el paciente; el sistema no modifica automáticamente sus ingredientes ni cantidades. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta propuesta | Receta aportada por un paciente o cuidador que necesita la validación de un nutricionista antes de publicarse como validada. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Receta validada | Receta publicada directamente por un nutricionista o aprobada por él tras haber sido propuesta por un paciente o cuidador. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §3 |
+| Publicación de salud | Artículo breve sobre alimentación y hábitos de vida saludables dirigido a pacientes y cuidadores, publicado por un nutricionista. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §5 |
+| Reporte de contenido | Aviso de una persona usuaria sobre contenido que considera inapropiado y que corresponde revisar al coordinador. | [Acta de captura de requisitos generales](../captura/acta-captura-requisitos-generales.md), §4; [acta de acuerdos técnicos y operativos](../captura/acta-acuerdos-tecnicos-operativos.md), §2.4.1 |
 
 ## 10. Modelos de análisis
 
@@ -316,13 +325,14 @@ mantener enlaces hacia sus requisitos de origen.
 
 ## Estado de la versión
 
-Esta versión 0.10 define la arquitectura documental, el contexto confirmado y
-las convenciones de redacción de UR, FR y NFR. Incorpora los acuerdos de A03
+Esta versión 0.14 define la arquitectura documental, el contexto confirmado y
+las convenciones de redacción de UR, FR y NFR. Incorpora los acuerdos del acta
+de captura de requisitos generales
 sobre el rol de nutricionista, el alcance, los idiomas, los navegadores y la
 infraestructura. También separa la SRS, que explica la especificación integrada,
 del catálogo, que es la fuente canónica de los requisitos atómicos. Los
-requisitos de usuario y funcionales ya están consolidados en el catálogo. El
-glosario forma parte de esta SRS.
+requisitos de usuario, funcionales y no funcionales ya están consolidados en el
+catálogo. El glosario del dominio forma parte de esta SRS.
 
-Antes de publicar la línea base v1.0 se consolidarán los requisitos no
-funcionales, el glosario y los enlaces de trazabilidad.
+Antes de publicar la línea base v1.0 se completarán los enlaces de trazabilidad
+pendientes.
