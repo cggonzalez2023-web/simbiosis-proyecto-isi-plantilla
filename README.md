@@ -1,17 +1,24 @@
-Proyecto Simbiosis — Repositorio Documental
-Repositorio de ejemplo para la gestión profesional de requisitos del proyecto ficticio Proyecto Simbiosis. Su finalidad es servir de referencia docente sobre cómo organizar, versionar y revisar la documentación de un proyecto de ingeniería del software.
+[README (4).md](https://github.com/user-attachments/files/33153056/README.4.md)
+# Proyecto Simbiosis — Repositorio Documental
 
-Fuente canónica
-Todos los documentos propios del proyecto se redactan y mantienen en Markdown dentro de este repositorio. Los archivos en Markdown son la fuente de verdad; cualquier exportación a otro formato (PDF u otros) es una copia derivada, no editable, publicada en releases/.
+Repositorio de ejemplo para la gestión profesional de requisitos del proyecto ficticio **Proyecto Simbiosis**. Su finalidad es servir de referencia docente sobre cómo organizar, versionar y revisar la documentación de un proyecto de ingeniería del software.
 
-Líneas base
+## Fuente canónica
+
+Todos los documentos propios del proyecto se redactan y mantienen en **Markdown** dentro de este repositorio. Los archivos en Markdown son la fuente de verdad; cualquier exportación a otro formato (PDF u otros) es una copia derivada, no editable, publicada en [`releases/`](releases/README.md).
+
+## Líneas base
+
 Una línea base (versión estable de la documentación) se declara mediante:
 
-Una etiqueta (tag) de Git sobre el commit correspondiente.
-Una entrada correspondiente en CHANGELOG.md que describe el alcance de esa línea base.
+- Una **etiqueta (tag) de Git** sobre el commit correspondiente.
+- Una entrada correspondiente en [`CHANGELOG.md`](CHANGELOG.md) que describe el alcance de esa línea base.
+
 Los nombres de archivo no incluyen números de versión: el histórico y las versiones los gestionan Git y las etiquetas.
 
-Estructura del repositorio
+## Estructura del repositorio
+
+```
 ├── README.md                  Este documento
 ├── CHANGELOG.md                Historial de líneas base
 ├── docs/
@@ -25,10 +32,13 @@ Estructura del repositorio
 │   ├── modelos/                  Modelos y diagramas del proyecto
 │   └── referencias/              Documentos externos o recibidos (no editables)
 └── releases/                    Versiones estables exportadas (p. ej. PDF)
-El plan de la iteración E1 de Elaboración define el alcance funcional y el trabajo previsto de una iteración simulada.
+```
 
-Convenciones
-Nombres de archivo en minúsculas y con guiones.
-Sin versiones en los nombres de archivo.
-docs/referencias/ contiene únicamente material externo o recibido; los documentos propios viven en las demás carpetas de docs/.
-releases/ contiene solo exportaciones estables; no es la fuente editable.
+El [plan de la iteración E1 de Elaboración](docs/planificacion/plan-iteracion-e1.md) define el alcance funcional y el trabajo previsto de una iteración simulada.
+
+## Convenciones
+
+- Nombres de archivo en minúsculas y con guiones.
+- Sin versiones en los nombres de archivo.
+- `docs/referencias/` contiene únicamente material externo o recibido; los documentos propios viven en las demás carpetas de `docs/`.
+- `releases/` contiene solo exportaciones estables; no es la fuente editable.
