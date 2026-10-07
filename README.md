@@ -1,4 +1,3 @@
-[README (4).md](https://github.com/user-attachments/files/33153056/README.4.md)
 # Proyecto Simbiosis — Repositorio Documental
 
 Repositorio de ejemplo para la gestión profesional de requisitos del proyecto ficticio **Proyecto Simbiosis**. Su finalidad es servir de referencia docente sobre cómo organizar, versionar y revisar la documentación de un proyecto de ingeniería del software.
