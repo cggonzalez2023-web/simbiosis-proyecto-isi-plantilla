@@ -224,45 +224,128 @@ Los apartados 6.1 y 6.2 corresponden a las descripciones detalladas de UC-05 y U
 ### 6.1 Descripción detallada UC-05 — Actualizar perfil
 
 **Identificador y nombre del caso de uso:** [Indica el caso.]
+UC-05 Actualizar perfil
 
 **Objetivo:** [Explica qué resultado pretende obtener el participante.]
+Modificar los datos personales, de contacto y preferencias dietéticas del usuario registrado y guardar los cambios con éxito en el sistema
 
 **Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
+actor principal: usuario registrado
+actores de apoyo: no hay
 
 **Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
-
+- El usuario dispone de una cuenta activa en el sistema.
+- El usuario tiene iniciada una sesión
 **Inicio:** [Indica qué acción o suceso inicia el caso.]
-
+El usuario solicita modificar la información de su perfil.
 **Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
-
+1. El usuario solicita actualizar su perfil.
+2. El sistema muestra la información actual del usuario, diferenciando los campos que se pueden modificar de los campos fijos que son solo de lectura.
+3. El usuario modifica los campos editables autorizados.
+4. El usuario solicita confirmar y guardar los cambios introducidos.
+5. El sistema verifica que los datos ingresados cumplen las reglas de validación establecidas.
+6. El sistema procesa y almacena de forma conjunta las modificaciones en el perfil.
+7. El sistema muestra una confirmación notificando que la actualización del perfil se completó correctamente.
+   
 **Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
+5.a. Falta un dato obligatorio o un dato no cumple su formato:
+  1. El sistema señala los campos con errores y muestra un mensaje indicando la corrección requerida.
+  2. El sistema mantiene los datos escritos por el usuario sin aplicar ni guardar ningún cambio.
+  3. El usuario subsana los datos erróneos.
+  4. El flujo retorna al paso 4 del escenario principal.
+     
+*a. El usuario cancela antes de guardar:
+  1. El usuario opta por cancelar el proceso de edición antes de guardar.
+  2. El sistema descarta todas las modificaciones hechas durante esta sesión de edición.
+  3. El perfil mantiene inalterados los datos guardados con anterioridad.
+  4. El caso de uso concluye sin aplicar cambios en el perfil.
+     
+6.a. El sistema no puede guardar:
+  1. El sistema comunica que la actualización no pudo completarse con éxito.
+  2. Los datos previamente guardados no sufren modificaciones, manteniéndose en pantalla los valores    introducidos por el usuario.
+  3. El usuario solicita reintentar la operación de guardado.
+  4. El flujo vuelve al paso 4 del escenario principal.  
+  *(Si el usuario prefiere no reintentar y cancela, se aplica la alternativa *.a)*.
+
 
 **Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
-
+- **Éxito:** El perfil queda guardado con las nuevas modificaciones y se notifica la confirmación al usuario. El alias y el correo electrónico permanecen intactos.
+- **Sin éxito / Cancelación:** El perfil conserva sin alteración sus valores originales. No se aplica ninguna actualización parcial.
+  
 **Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
-
+- UR-03 y FR-019 (permite editar información personal y preferencias desde el perfil salvo alias y correo).
+- Acta de acuerdos de UC-05, apartado 2 (reglas sobre datos editables, validaciones de obligatoriedad y formato, cancelación y reintento).
+- NFR-010 (requisito de no funcionalidad recogido en el modelo).
+  
 **Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
+no hay
 
 ### 6.2 Descripción detallada UC-21 — Buscar recetas
 
 **Identificador y nombre del caso de uso:** [Indica el caso.]
-
+UC-21 · Buscar recetas
 **Objetivo:** [Explica qué resultado pretende obtener el participante.]
+Encontrar recetas validadas y publicadas conforme a criterios de búsqueda especificados (ingredientes a incluir o excluir y palabra/frase de texto) y acceder a la consulta detallada de una receta seleccionada
 
 **Participantes:** [Indica el actor principal y los actores de apoyo, si los hay.]
-
+- **Actor principal:** Usuario registrado
+-  **Actores de apoyo:** Ninguno
+  
 **Precondiciones:** [Indica qué se da por cumplido al comenzar. Las comprobaciones que realiza el sistema pertenecen al flujo.]
-
+- El usuario dispone de una cuenta activa
+- El usuario tiene una sesión iniciadA
+  
 **Inicio:** [Indica qué acción o suceso inicia el caso.]
+El usuario accede al apartado o interfaz de búsqueda de receta
 
 **Escenario principal de éxito:** [Describe la secuencia entre los participantes y el sistema.]
+1. El usuario selecciona uno o varios ingredientes que desea incluir y solicita ejecutar la búsqueda
+2. El sistema localiza las recetas publicadas y validadas que contienen la totalidad de los ingredientes seleccionados
+3. El sistema muestra el listado de resultados ordenados cronológicamente por fecha de publicación (las más recientes primero). En cada vista previa incluye título, imagen (o la indicación «Sin imagen»), calificación promedio (o «Sin valoraciones») y descripción breve
+4. El usuario selecciona una receta específica de la lista presentada
+5. El sistema despliega la información detallada de la receta seleccionada: título, imagen (si existe), lista de ingredientes, instrucciones de preparación, tiempo de cocción, número de porciones, alias del autor e insignia de validación
 
 **Extensiones (flujos alternativos):** [Vincula cada variación a un paso. Indica cómo continúa o termina.]
-
+- **1.a. Búsqueda por coincidencia de texto (palabra o frase):**
+  1. En el paso 1, el usuario introduce una palabra o frase en el campo de texto de búsqueda.
+  2. El sistema comprueba si el texto aparece exactamente (en orden y seguido, ignorando mayúsculas y tildes) en el título o la descripción breve.
+  3. El flujo continúa en el paso 2 del escenario principal.
+- **1.b. Exclusión de ingredientes:**
+  1. En el paso 1, el usuario selecciona ingredientes que desea descartar del resultado.
+  2. El sistema filtra las recetas garantizando que ninguna de las mostradas contenga alguno de los ingredientes excluidos.
+  3. El flujo continúa en el paso 2 del escenario principal.
+- **1.c. Combinación múltiple de criterios de búsqueda:**
+  1. En el paso 1, el usuario combina búsqueda por texto, ingredientes incluidos e ingredientes excluidos.
+  2. El sistema busca únicamente las recetas que satisfacen simultáneamente todos los criterios.
+  3. El flujo continúa en el paso 2 del escenario principal.
+- **1.d. Conflicto entre criterios (mismo ingrediente incluido y excluido):**
+  1. En el paso 1, el usuario marca un mismo ingrediente para incluirlo y excluirlo a la vez.
+  2. El sistema señala el conflicto y no ejecuta la búsqueda hasta que el usuario corrija la selección.
+- **1.e. Ausencia de criterios de búsqueda:**
+  1. En el paso 1, el usuario solicita buscar sin indicar texto ni seleccionar ingredientes.
+  2. El sistema solicita al usuario que proporcione al menos un criterio y conserva la pantalla sin ejecutar la búsqueda.
+- **2.a. Búsqueda sin resultados de coincidencias:**
+  1. Ninguna receta publicada y validada satisface la totalidad de los criterios.
+  2. El sistema notifica que no hay resultados y conserva los criterios indicados.
+  3. Si aplica, el sistema presenta de forma separada propuestas de corrección ortográfica o sugerencias alternativas relacionadas (manteniendo siempre los ingredientes excluidos).
+  4. El usuario puede aceptar una propuesta (viendo los criterios sugeridos para ejecutar una nueva búsqueda) o modificar sus criterios manualmente.
+- **2.b / 5.a. Ocurre un fallo del sistema al consultar o cargar el detalle:**
+  1. El sistema no puede completar la búsqueda o desplegar la receta seleccionada debido a una incidencia técnica.
+  2. El sistema comunica el problema técnico sin presentarlo como una ausencia de resultados.
+  3. El sistema preserva los términos de la última búsqueda para que el usuario intente la acción de nuevo o dé por terminada la consulta.
+- **5.b. Retorno a la lista de resultados:**
+  1. Durante la lectura del detalle, el usuario solicita regresar al listado de resultados.
+  2. El sistema vuelve a desplegar el listado de resultados conservando el orden y los criterios de la última búsqueda realizada.
+  
 **Postcondiciones:** [Indica qué queda establecido con éxito y qué se conserva o cambia si el caso termina sin éxito o se cancela. Una consulta no requiere modificar datos para alcanzar su objetivo.]
-
+- **Éxito / Búsqueda sin resultados:** El sistema devuelve la información consultada sin realizar modificaciones en los datos del sistema. Los términos y parámetros de la última búsqueda permanecen guardados durante la sesión
+- **Sin éxito por fallo técnico:** Se mantienen los criterios para permitir reintentos; no se alteran ni corrompen datos del sistema
+  
 **Reglas y NFR pertinentes:** [Remite a los requisitos y actas que condicionan el comportamiento.]
-
+- UR-08 / FR-085, FR-086, FR-087, FR-089, FR-099, FR-102, FR-119 (búsqueda por texto e ingredientes, exclusiones, ordenación por fecha, ayuda ante cero resultados y vistas previas).
+- FR-056, FR-066, FR-192 (datos del detalle de receta, insignia de validación e identificación mediante alias público).
+- Acta de acuerdos de UC-21, apartado 2 (reglas de combinación, ausencia de valoraciones o imágenes, conflictos de criterios y tratamiento de errores).
+- Requisitos No Funcionales (NFR) pertinentes recogidos en el apartado 5 del documento.
 **Preguntas abiertas:** [Registra solo las cuestiones necesarias que las fuentes no resuelvan. Si no hay preguntas para el alcance descrito, indícalo.]
 
 ## 7 Continuidad entre iteraciones
